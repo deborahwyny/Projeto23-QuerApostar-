@@ -3,8 +3,8 @@ import { participantSchema } from '../schemmas/participants-schemma';
 import { schemaValidator } from '../middlewares/schemma-validator-middleware';
 import { participantPost } from '../controller/participants-controller';
 
-const participantRouter = Router()
+const participantRouter = Router();
 
-participantRouter.post('/', schemaValidator(participantSchema), participantPost)
+participantRouter.post('/', schemaValidator(participantSchema), participantPost);
 
-export default participantRouter
+export default participantRouter;
