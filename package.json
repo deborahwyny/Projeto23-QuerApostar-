@@ -1,0 +1,44 @@
+{
+  "name": "projeto23-querapostar-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.ts",
+    "start": "ts-node src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deborahwyny/Projeto23-QuerApostar-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "prisma": "ts-node prisma/seed.ts",
+  "bugs": {
+    "url": "https://github.com/deborahwyny/Projeto23-QuerApostar-/issues"
+  },
+  "homepage": "https://github.com/deborahwyny/Projeto23-QuerApostar-#readme",
+  "dependencies": {
+    "@prisma/client": "^5.5.2",
+    "axios": "^1.6.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "http-status": "^1.7.3",
+    "httpstatus": "^1.0.0",
+    "joi": "^17.11.0",
+    "node": "^21.1.0",
+    "pg": "^8.11.3",
+    "prisma": "^5.5.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.16",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.9.0",
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
