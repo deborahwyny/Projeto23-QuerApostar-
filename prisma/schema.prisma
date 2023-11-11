@@ -14,3 +14,14 @@ model participantes {
   name      String    @db.VarChar(255)
   balance   Int
 }
+
+model jogos {
+  id              Int       @id @default(autoincrement())
+  created_at      DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime? @default(now()) @db.Timestamptz(6)
+  home_team_name  String    @db.VarChar(255)
+  away_team_name  String    @db.VarChar(255)
+  home_team_score Int?      @default(0)
+  away_team_score Int?      @default(0)
+  is_finished     Boolean?  @default(false)
+}
