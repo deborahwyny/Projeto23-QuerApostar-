@@ -10,6 +10,12 @@ async function createParticipant(name: string, balance: number) {
   return create;
 }
 
+async function findParticipant() {
+  const find = await participantRepository.participantFind();
+  return find;
+}
+
 export const participantService = {
   createParticipant,
+  findParticipant,
 };

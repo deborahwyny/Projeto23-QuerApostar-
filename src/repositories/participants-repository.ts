@@ -11,6 +11,12 @@ async function participanteCreate(name: string, balance: number) {
   return participant;
 }
 
+async function participantFind() {
+  const participant = await prisma.participantes.findMany();
+  return participant;
+}
+
 export const participantRepository = {
   participanteCreate,
+  participantFind,
 };

@@ -6,6 +6,10 @@ export async function participantPost(req: Request, res: Response) {
   const { name, balance } = req.body;
 
   const result = await participantService.createParticipant(name, balance);
+  return res.status(httpStatus.OK).send(result);
+}
 
+export async function participantGet(req: Request, res: Response) {
+  const result = await participantService.findParticipant();
   return res.status(httpStatus.OK).send(result);
 }

@@ -13,6 +13,7 @@ model participantes {
   updatedat DateTime? @default(now()) @db.Timestamp(6)
   name      String    @db.VarChar(255)
   balance   Int
+  apostas   apostas[]
 }
 
 model jogos {
@@ -24,4 +25,20 @@ model jogos {
   home_team_score Int?      @default(0)
   away_team_score Int?      @default(0)
   is_finished     Boolean?  @default(false)
+  apostas         apostas[]
+}
+
+model apostas {
+  id              Int            @id @default(autoincrement())
+  created_at      DateTime?      @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?      @default(now()) @db.Timestamp(6)
+  home_team_score Int?
+  away_team_score Int?
+  amount_bet      Int?
+  game_id         Int?
+  participant_id  Int?
+  status          String?        @db.VarChar(20)
+  amount_won      Int?
+  jogos           jogos?         @relation(fields: [game_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  participantes   participantes? @relation(fields: [participant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
