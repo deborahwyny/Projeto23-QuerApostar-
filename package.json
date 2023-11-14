@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.ts",
-    "start": "node dist/app.js",
+    "start": "npm run migration:run && node dist/app.js",
     "build": "npm run tsc",
+    "migration:run": "prisma migrate deploy",
     "tsc": "tsc",
     "teste": "jest",
     "test:coverage": "npm run test -- --coverage",
