@@ -20,9 +20,6 @@ async function betsCreate(
   return bets;
 }
 
-async function betsFind() {}
-
 export const betsRepository = {
   betsCreate,
-  betsFind,
 };

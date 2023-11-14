@@ -9,8 +9,3 @@ export async function betsPost(req: Request, res: Response) {
   console.log(result, 'result');
   return res.status(httpStatus.OK).send(result);
 }
-
-export async function betsGet(req: Request, res: Response) {
-  const result = await betService.findBets();
-  return res.status(httpStatus.OK).send(result);
-}

@@ -12,12 +12,6 @@ async function creatBets(
   return bets;
 }
 
-async function findBets() {
-  const bets = await betsRepository.betsFind();
-  return bets;
-}
-
 export const betService = {
   creatBets,
-  findBets,
 };
