@@ -3,9 +3,9 @@ import httpStatus from 'http-status';
 import { betService } from '../services/bets-service';
 
 export async function betsPost(req: Request, res: Response) {
-  const { home_team_score, away_team_score, amount_bet, game_id, participant_id } = req.body;
+  const { homeTeamScore, awayTeamScore, amountBet, gameId, participantId } = req.body;
 
-  const result = await betService.creatBets(home_team_score, away_team_score, amount_bet, game_id, participant_id);
+  const result = await betService.creatBets(homeTeamScore, awayTeamScore, amountBet, gameId, participantId);
   console.log(result, 'result');
   return res.status(httpStatus.OK).send(result);
 }

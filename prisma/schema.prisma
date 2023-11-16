@@ -17,28 +17,28 @@ model participantes {
 }
 
 model jogos {
-  id              Int       @id @default(autoincrement())
-  created_at      DateTime? @default(now()) @db.Timestamptz(6)
-  updated_at      DateTime? @default(now()) @db.Timestamptz(6)
-  home_team_name  String    @db.VarChar(255)
-  away_team_name  String    @db.VarChar(255)
-  home_team_score Int?      @default(0)
-  away_team_score Int?      @default(0)
-  is_finished     Boolean?  @default(false)
-  apostas         apostas[]
+  id            Int       @id @default(autoincrement())
+  createdAt     DateTime? @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime? @default(now()) @db.Timestamptz(6)
+  homeTeamName  String?   @db.VarChar(255)
+  awayTeamName  String?   @db.VarChar(255)
+  homeTeamScore Int?      @default(0)
+  awayTeamScore Int?      @default(0)
+  isFinished    Boolean?  @default(false)
+  apostas       apostas[]
 }
 
 model apostas {
-  id              Int            @id @default(autoincrement())
-  created_at      DateTime?      @default(now()) @db.Timestamp(6)
-  updated_at      DateTime?      @default(now()) @db.Timestamp(6)
-  home_team_score Int?
-  away_team_score Int?
-  amount_bet      Int?
-  game_id         Int?
-  participant_id  Int?
-  status          String?        @db.VarChar(20)
-  amount_won      Int?
-  jogos           jogos?         @relation(fields: [game_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  participantes   participantes? @relation(fields: [participant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id            Int            @id @default(autoincrement())
+  createdAt     DateTime?      @default(now()) @db.Timestamp(6)
+  updatedAt     DateTime?      @default(now()) @db.Timestamp(6)
+  homeTeamScore Int?
+  awayTeamScore Int?
+  amountBet     Int?
+  gameId        Int?
+  participantId Int?
+  status        String?        @db.VarChar(20)
+  amountWon     Int?
+  jogos         jogos?         @relation(fields: [gameId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_game")
+  participantes participantes? @relation(fields: [participantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_participant")
 }

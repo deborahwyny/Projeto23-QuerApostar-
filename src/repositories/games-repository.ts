@@ -1,13 +1,13 @@
 import { prisma } from '../config/database';
 
-async function gameCreate(home_team_name: string, away_team_name: string) {
+async function gameCreate(homeTeamName: string, awayTeamName: string) {
   const game = await prisma.jogos.create({
     data: {
-      home_team_name: home_team_name,
-      away_team_name: away_team_name,
-      home_team_score: 0,
-      away_team_score: 0,
-      is_finished: false,
+      homeTeamName: homeTeamName,
+      awayTeamName: awayTeamName,
+      homeTeamScore: 0,
+      awayTeamScore: 0,
+      isFinished: false,
     },
   });
 
@@ -31,25 +31,37 @@ async function gameWithBets(gameId: number) {
     where: { id: gameId },
     select: {
       id: true,
-      away_team_name: true,
-      away_team_score: true,
-      created_at: true,
-      home_team_name: true,
-      home_team_score: true,
-      is_finished: true,
-      updated_at: true,
+      awayTeamName: true,
+      awayTeamScore: true,
+      createdAt: true,
+      homeTeamName: true,
+      homeTeamScore: true,
+      isFinished: true,
+      updatedAt: true,
       apostas: {
-        where: { game_id: gameId },
+        where: { gameId: gameId },
       },
     },
   });
   return game;
 }
-// async function gameFinish(home_team_name: number, away_team_name: number) {}
+
+async function gameFinish(gameId: number, homeTeamScore: number, awayTeamScore: number) {
+  const game = await prisma.jogos.update({
+    where: { id: gameId },
+    data: {
+      homeTeamScore: homeTeamScore,
+      awayTeamScore: awayTeamScore,
+      isFinished: true,
+    },
+  });
+  return game;
+}
 
 export const gameRepository = {
   gameCreate,
   gameFind,
   findGameId,
   gameWithBets,
+  gameFinish,
 };

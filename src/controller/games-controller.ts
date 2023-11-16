@@ -3,10 +3,9 @@ import httpStatus from 'http-status';
 import { gameService } from '../services/games-service';
 
 export async function gamesPost(req: Request, res: Response) {
-  const { home_team_name, away_team_name } = req.body;
+  const { homeTeamName, awayTeamName } = req.body;
 
-  const result = await gameService.createGame(home_team_name, away_team_name);
-
+  const result = await gameService.createGame(homeTeamName, awayTeamName);
   return res.status(httpStatus.OK).send(result);
 }
 
@@ -22,9 +21,10 @@ export async function gamesGetWithId(req: Request, res: Response) {
   return res.status(httpStatus.OK).send(result);
 }
 
-// export async function gamesPostWithId(req: Request, res: Response) {
-//   const { home_team_name, away_team_name } = req.body;
+export async function gamesPostWithId(req: Request, res: Response) {
+  const gameId = Number(req.params.id);
+  const { homeTeamScore, awayTeamScore } = req.body;
 
-//   const result = await gameService.postGamewithId(home_team_name, away_team_name);
-//   return res.status(httpStatus.OK).send(result);
-// }
+  const result = await gameService.postGameFinish(gameId, homeTeamScore, awayTeamScore);
+  return res.status(httpStatus.OK).send(result);
+}
