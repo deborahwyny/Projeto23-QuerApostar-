@@ -1,10 +1,10 @@
+import { banlanceError } from '../errors/erros';
 import { participantRepository } from '../repositories/participants-repository';
 
 async function createParticipant(name: string, balance: number) {
-  if (balance < 10) {
-    throw new Error('Balance must be at least 10 for participant creation.');
+  if (balance < 1000) {
+    throw banlanceError();
   }
-
   const create = await participantRepository.participanteCreate(name, balance);
 
   return create;

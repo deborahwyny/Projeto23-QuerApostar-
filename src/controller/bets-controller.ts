@@ -4,8 +4,10 @@ import { betService } from '../services/bets-service';
 
 export async function betsPost(req: Request, res: Response) {
   const { homeTeamScore, awayTeamScore, amountBet, gameId, participantId } = req.body;
-
-  const result = await betService.creatBets(homeTeamScore, awayTeamScore, amountBet, gameId, participantId);
-  console.log(result, 'result');
-  return res.status(httpStatus.OK).send(result);
+  try {
+    const result = await betService.creatBets(homeTeamScore, awayTeamScore, amountBet, gameId, participantId);
+    return res.status(httpStatus.OK).send(result);
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
 }

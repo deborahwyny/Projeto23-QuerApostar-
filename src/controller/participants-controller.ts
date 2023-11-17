@@ -4,9 +4,12 @@ import { participantService } from '../services/participants-service';
 
 export async function participantPost(req: Request, res: Response) {
   const { name, balance } = req.body;
-
-  const result = await participantService.createParticipant(name, balance);
-  return res.status(httpStatus.OK).send(result);
+  try {
+    const result = await participantService.createParticipant(name, balance);
+    return res.status(httpStatus.OK).send(result);
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
 }
 
 export async function participantGet(req: Request, res: Response) {
