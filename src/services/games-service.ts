@@ -16,8 +16,8 @@ async function findGamesId(gameId: number) {
 }
 
 async function postGameFinish(gameId: number, homeTeamScore: number, awayTeamScore: number) {
-  const create = await gameRepository.gameFinish(gameId, homeTeamScore, awayTeamScore);
-  return create;
+  const update = await gameRepository.gameFinish(gameId, homeTeamScore, awayTeamScore);
+  return update;
 }
 
 export const gameService = {

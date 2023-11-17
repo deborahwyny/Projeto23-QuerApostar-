@@ -58,10 +58,19 @@ async function gameFinish(gameId: number, homeTeamScore: number, awayTeamScore: 
   return game;
 }
 
+async function gameAlreadyFinish(gameId: number) {
+  const game = await prisma.jogos.findFirst({
+    where: { id: gameId },
+  });
+
+  return game;
+}
+
 export const gameRepository = {
   gameCreate,
   gameFind,
   findGameId,
   gameWithBets,
   gameFinish,
+  gameAlreadyFinish,
 };

@@ -8,7 +8,7 @@ export async function participantPost(req: Request, res: Response) {
     const result = await participantService.createParticipant(name, balance);
     return res.status(httpStatus.OK).send(result);
   } catch (err) {
-    res.status(400).send(err.message);
+    res.status(500).send(err.message);
   }
 }
 

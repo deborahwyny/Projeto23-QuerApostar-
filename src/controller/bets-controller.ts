@@ -8,6 +8,6 @@ export async function betsPost(req: Request, res: Response) {
     const result = await betService.creatBets(homeTeamScore, awayTeamScore, amountBet, gameId, participantId);
     return res.status(httpStatus.OK).send(result);
   } catch (err) {
-    res.status(404).send(err.message);
+    res.status(500).send(err.message);
   }
 }

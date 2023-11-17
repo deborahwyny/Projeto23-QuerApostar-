@@ -16,3 +16,11 @@ export function createParticipantBalanceError(): ApplicationError {
     statusCode: httpStatus.BAD_REQUEST,
   };
 }
+
+export function gameAFinishError(): ApplicationError {
+  return {
+    name: 'gameAFinishError',
+    message: 'game already finished',
+    statusCode: httpStatus.BAD_REQUEST,
+  };
+}

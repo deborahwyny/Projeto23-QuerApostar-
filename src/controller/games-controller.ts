@@ -24,7 +24,10 @@ export async function gamesGetWithId(req: Request, res: Response) {
 export async function gamesPostWithId(req: Request, res: Response) {
   const gameId = Number(req.params.id);
   const { homeTeamScore, awayTeamScore } = req.body;
-
-  const result = await gameService.postGameFinish(gameId, homeTeamScore, awayTeamScore);
-  return res.status(httpStatus.OK).send(result);
+  try {
+    const result = await gameService.postGameFinish(gameId, homeTeamScore, awayTeamScore);
+    return res.status(httpStatus.OK).send(result);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 }
