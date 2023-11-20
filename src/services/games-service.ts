@@ -1,4 +1,5 @@
 import { gameRepository } from '../repositories/games-repository';
+import { betService } from './bets-service';
 
 async function createGame(homeTeamName: string, awayTeamName: string) {
   const create = await gameRepository.gameCreate(homeTeamName, awayTeamName);
@@ -17,6 +18,7 @@ async function findGamesId(gameId: number) {
 
 async function postGameFinish(gameId: number, homeTeamScore: number, awayTeamScore: number) {
   const update = await gameRepository.gameFinish(gameId, homeTeamScore, awayTeamScore);
+  await betService.betsStatusUpdate(gameId, homeTeamScore, awayTeamScore);
   return update;
 }
 

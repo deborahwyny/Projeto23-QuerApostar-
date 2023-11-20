@@ -24,3 +24,11 @@ export function gameAFinishError(): ApplicationError {
     statusCode: httpStatus.BAD_REQUEST,
   };
 }
+
+export function participantError(): ApplicationError {
+  return {
+    name: 'participantError',
+    message: 'participant not found',
+    statusCode: httpStatus.NOT_FOUND,
+  };
+}

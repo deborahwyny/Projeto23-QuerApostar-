@@ -6,7 +6,7 @@ export async function participantPost(req: Request, res: Response) {
   const { name, balance } = req.body;
   try {
     const result = await participantService.createParticipant(name, balance);
-    return res.status(httpStatus.OK).send(result);
+    return res.status(httpStatus.CREATED).send(result);
   } catch (err) {
     res.status(500).send(err.message);
   }
