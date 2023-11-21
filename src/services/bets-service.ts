@@ -1,4 +1,4 @@
-import { createParticipantBalanceError, gameAFinishError } from '../errors/erros';
+import { createParticipantBalanceError, gameAFinishError, gameError, participantError } from '../errors/erros';
 import { Bet } from '../protocols';
 import { betsRepository } from '../repositories/bets-repository';
 import { gameRepository } from '../repositories/games-repository';
@@ -13,14 +13,14 @@ async function creatBets(
 ) {
   const participants = await participantRepository.participantFindId(participantId);
   if (!participants) {
-    throw new Error('Participant not found.');
+    throw participantError();
   }
 
   amountBets(amountBet, participants.balance);
 
   const game = await gameRepository.gameAlreadyFinish(gameId);
   if (!game) {
-    throw new Error('game not found.');
+    throw gameError();
   }
   if (game.isFinished) throw gameAFinishError();
   const bets = await betsRepository.betsCreate(homeTeamName, awayTeamName, amountBet, gameId, participantId);

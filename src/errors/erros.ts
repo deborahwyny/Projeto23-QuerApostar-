@@ -32,3 +32,11 @@ export function participantError(): ApplicationError {
     statusCode: httpStatus.NOT_FOUND,
   };
 }
+
+export function gameError(): ApplicationError {
+  return {
+    name: 'gameError',
+    message: 'game not found',
+    statusCode: httpStatus.NOT_FOUND,
+  };
+}

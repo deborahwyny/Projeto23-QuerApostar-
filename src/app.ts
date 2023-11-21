@@ -1,8 +1,9 @@
-import express, { json, Request, Response } from 'express';
+import express, { json, Request, Response, Express } from 'express';
 import cors from 'cors';
 import participantRouter from './routers/participants-routers';
 import gamesRouter from './routers/games-routers';
 import betsRouts from './routers/bets-routers';
+import { connectDb, disconnectDB } from './config/database';
 
 const app = express();
 
@@ -14,5 +15,14 @@ app.get('/health', (req: Request, res: Response) => {
 app.use('/participant', participantRouter);
 app.use('/games', gamesRouter);
 app.use('/bets', betsRouts);
+
+export function init(): Promise<Express> {
+  connectDb();
+  return Promise.resolve(app);
+}
+
+export async function close(): Promise<void> {
+  await disconnectDB();
+}
 
 export default app;
